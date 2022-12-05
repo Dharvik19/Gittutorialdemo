@@ -7,11 +7,11 @@ console.log(document.links);
 //get element by id
 
 var headTitle = document.getElementById('header-title');
-var header = document.getElementById('main-header');
+// var header = document.getElementById('main-header');
 console.log(headTitle);
 headTitle.textContent = "hehehe";
 headTitle.innerText = "Good bye";
-header.style.borderBottom = 'solid 3px #000'
+// header.style.borderBottom = 'solid 3px #000'
 
 //get element by class 
 
@@ -28,3 +28,12 @@ items[3].style.fontWeight = 'bold';
 // Title.textContent = "123";
 Title.style.color = '#82B27D';
 
+var newItem = document.getElementsByClassName('newli');
+newItem[0].style.fontWeight = 'bold';
+newItem[0].style.backgroundColor = 'black';
+newItem[0].style.color = 'white';
+
+//targeting elements by tag name
+
+var header = document.querySelector('#main-header');
+header.style.border = "solid 3px #000";
