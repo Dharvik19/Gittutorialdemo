@@ -17,6 +17,7 @@ form.addEventListener('submit',addItem);
 //     var inputEmail = document.getElementById('email');
 //     localStorage.setItem('email',inputEmail.value);
 // }
+//added as objects
 function addItem(e){
     e.preventDefault();
     var inputName = document.getElementById('name').value;
