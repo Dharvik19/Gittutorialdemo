@@ -56,6 +56,14 @@
 
                 parentNode.innerHTML = parentNode.innerHTML + childHTML;
             }
+            function editUserDetails(emailId, name){
+
+            document.getElementById('email').value = emailId;
+            document.getElementById('username').value = name;
+
+
+            deleteUser(emailId)
+            }
 
             // deleteUser('abc@gmail.com')
 
