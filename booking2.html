@@ -17,23 +17,34 @@
             </form>
             <ul id='listOfUsers'></ul>
         </section>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
         <script>
             function saveToLocalStorage(event) {
                 event.preventDefault();
                 const name = event.target.username.value;
                 const email = event.target.emailId.value;
                
-                // localStorage.setItem('name', name);
-                // localStorage.setItem('email', email);
-                // localStorage.setItem('phonenumber', phonenumber)
                 const obj = {
                     name,
                     email
-                }
-                localStorage.setItem(obj.email, JSON.stringify(obj))
-                showNewUserOnScreen(obj)
+                } 
+
+                axios.post("https://crudcrud.com/api/e9cdcb8939664ec19232013daddb4bfc/appointmentDATA",obj)
+                .then((response)=>{
+                    showNewUserOnScreen(response.data);
+                    console.log(response)
+                })
+                .catch((err)=>{
+                    console.log(err);
+                })
+                // localStorage.setItem(obj.email, JSON.stringify(obj))
+                // showNewUserOnScreen(obj)
             }
+
+            // getting the response back from the crudcrud.com
+
+
+
 
             window.addEventListener("DOMContentLoaded", () => {
                 const localStorageObj = localStorage;
@@ -46,7 +57,7 @@
                     showNewUserOnScreen(userDetailsObj)
                 }
             })
-
+            //show user on screen 
             function showNewUserOnScreen(user){
                 const parentNode = document.getElementById('listOfUsers');
                 const childHTML = `<li id=${user.email}> ${user.name} - ${user.email}
@@ -61,7 +72,6 @@
             document.getElementById('email').value = emailId;
             document.getElementById('username').value = name;
 
-
             deleteUser(emailId)
             }
 
@@ -73,18 +83,13 @@
                 removeUserFromScreen(emailId);
 
             }
-
+            //remove user from screen
             function removeUserFromScreen(emailId){
                 const parentNode = document.getElementById('listOfUsers');
                 const childNodeToBeDeleted = document.getElementById(emailId);
 
                 parentNode.removeChild(childNodeToBeDeleted)
             }
-
-
-
-
-
 
 
         </script>
