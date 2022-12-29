@@ -58,7 +58,7 @@
             function showNewUserOnScreen(user){
                 const parentNode = document.getElementById('listOfUsers');
                 const childHTML = `<li class="list-group-item" id=${user.amount}> ${user.description} - ${user.amount}- ${user.categories} 
-                                        <button  class="btn btn-secondary btn-sm float-right" onclick=deleteUser('${user.amount}')> Edit User </button>
+                                        <button  class="btn btn-secondary btn-sm float-right" onclick=editUserDetails('${user.amount}','${user.description}')> Edit User </button>
                                         <button class="btn btn-danger btn-sm float-right mr-2" onclick=deleteUser('${user.amount}')> Delete User </button>
                                         
                                      </li>`
@@ -66,11 +66,11 @@
                 parentNode.innerHTML = parentNode.innerHTML + childHTML;
             }
             //edit user details
-            function editUserDetails(amount, description, categories){
+            function editUserDetails(amount, description){
 
-            document.getElementById('email').value = amount;
-            document.getElementById('description').value = name;
-            document.getElementById('categories').value = categories;
+            document.getElementById('amount').value = amount;
+            document.getElementById('description').value = description;
+            // document.getElementById('categories').value = categories;
 
 
             deleteUser(amount)
