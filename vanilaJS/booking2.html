@@ -12,6 +12,8 @@
                 <input type="text" name="username" id="username" required/>
                 <label> EmailId</label>
                 <input type="text" name="emailId" id="emailId" required/>
+                <label> phone Number</label>
+                <input type="text" name="phoneNumber" id="phoneNumber" required/>
                 
                 <button class="btn"> Submit </button>
             </form>
@@ -23,13 +25,14 @@
                 event.preventDefault();
                 const name = event.target.username.value;
                 const email = event.target.emailId.value;
-               
+                const phoneNumber = event.target.phoneNumber.value;
                 const obj = {
                     name,
-                    email
+                    email,
+                    phoneNumber
                 } 
 
-                axios.post("https://crudcrud.com/api/e9cdcb8939664ec19232013daddb4bfc/appointmentDATA",obj)
+                axios.post("https://crudcrud.com/api/287b6361fa304629803a44e30f66e25c/appointmentDATA",obj)
                 .then((response)=>{
                     showNewUserOnScreen(response.data);
                     console.log(response)
@@ -44,7 +47,7 @@
             // getting the response back from the crudcrud.com
 
             window.addEventListener("DOMContentLoaded", () => {
-                axios.get("https://crudcrud.com/api/e9cdcb8939664ec19232013daddb4bfc/appointmentDATA")
+                axios.get("https://crudcrud.com/api/287b6361fa304629803a44e30f66e25c/appointmentDATA")
                 .then((response) =>{
                     console.log(response);
                     for(var i =0;i<response.data.length;i++){
@@ -60,27 +63,28 @@
 
                 document.getElementById('emailId').value='';
                 document.getElementById('username').value = '';
+                document.getElementById('phoneNumber').value = '';
 
                 const parentNode = document.getElementById('listOfUsers');
-                const childHTML = `<li id=${user._id}> ${user.name} - ${user.email}
+                const childHTML = `<li id=${user._id}> ${user.name} - ${user.email} - ${user.phoneNumber}
                                         <button class="btn" onclick=deleteUser('${user._id}')> Delete User </button>
-                                        <button class="btn" onclick=editUserDetails('${user.email}','${user.name}','${user._id}')> Edit User </button>
+                                        <button class="btn" onclick=editUserDetails('${user.email}','${user.name}','${user.phoneNumber}','${user._id}')> Edit User </button>
                                      </li>`
 
                 parentNode.innerHTML = parentNode.innerHTML + childHTML;
             }
-            function editUserDetails(emailId, name, userId){
+            function editUserDetails(emailId, name, phoneNumber,userId){
 
             document.getElementById('emailId').value = emailId;
             document.getElementById('username').value = name;
-
+            document.getElementById('phoneNumber').value = phoneNumber;
             deleteUser(userId);
             }
 
             // deleteUser('abc@gmail.com')
 
             function deleteUser(userId){
-                axios.delete(`https://crudcrud.com/api/e9cdcb8939664ec19232013daddb4bfc/appointmentDATA/${userId}`)
+                axios.delete(`https://crudcrud.com/api/287b6361fa304629803a44e30f66e25c/${userId}`)
                 .then((response)=>{
                     removeUserFromScreen(userId);
                 }).catch((err)=>console.log(err));
