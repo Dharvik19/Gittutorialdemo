@@ -22,7 +22,7 @@ function addItem(e){
     //add text node with input value 
     li.appendChild(document.createTextNode(newItem));
     li.appendChild(document.createTextNode("\n"+newItem2));
-    itemList .appendChild(li);
+    itemList.appendChild(li);
     //create delete button
     var deleteButton = document.createElement('button');
     //add classes to delete button

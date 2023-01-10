@@ -50,7 +50,7 @@ const posts = [
                }else{
                 reject('Array is empty');
                }
-            },1000);
+            },2000);
         })
     }
 createPost({title:'post three',body:'This is post three'})
@@ -88,22 +88,12 @@ const user ={
 }
 
 
-// function updaeUserActivity(){
-//     return new Promise((resolve,reject)=>{
-//         setTimeout(()=>{
-//            user.lastActivity;
-//            resolve(createPost);
-//         },2000);
-//     });
-// }
-// const promiseUSer = Promise.resolve(createPost);
-// const promiseCreate = Promise.resolve(createPost);
-// Promise.all([promiseUSer,promiseCreate]).then(values => console.log(values));
+
   function updateUserActivity(){
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
             
-            console.log(user.lastActivity = new Date());
+            console.log(user.lastActivity = new Date().getTime());
             resolve(user.lastActivity);
          
             
@@ -134,3 +124,28 @@ createPost({title:'post 5',body:'this is post 5'})
 .then(console.log(`before post 5 created user last activity time ${user.lastActivity}`));
 
 Promise.all([createPost({title:'post 6',body:'this is post 6'}),updateUserActivity()]).then((res)=>console.log(`after post 5 created ${res}`));
+
+
+async function init(){
+    await createPost({title:'Post 7 ', body:'body of 7'});
+
+    getPosts();
+}
+ 
+const preMovie = async() =>{
+    const wife = new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve('ticket');
+        },3000)
+    })
+}
+
+const getpopcorn = new Promise((resolve,reject)=>resolve ('popcporn'));
+const getButter = new Promise((resolve,reject)=>resolve('butter'));
+let ticket = await wife;
+
+console.log(`wife: i have the${ticket}`);
+
+let butter  = await getButter;
+
+console.log(`i got the ${butter}`);
